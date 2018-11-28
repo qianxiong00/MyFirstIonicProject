@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ScheduleDetailsPage } from '../schedule-details/schedule-details';
 
 @Component({
   selector: 'page-schedule',
@@ -48,6 +50,12 @@ export class SchedulePage {
     }
   ]
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
+  }
+
+  itemSelected(item: any) {
+    this.navCtrl.push(ScheduleDetailsPage, {
+      item: item
+    })
   }
 }

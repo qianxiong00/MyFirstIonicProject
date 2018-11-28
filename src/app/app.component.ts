@@ -3,7 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { SchedulePage } from '../pages/schedule/schedule';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,8 +28,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Schedule', component: SchedulePage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Schedule', component: SchedulePage }
     ];
   }
 
