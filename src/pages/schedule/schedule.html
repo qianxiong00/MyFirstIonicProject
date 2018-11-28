@@ -10,10 +10,10 @@
 
 <ion-content class="card-background-page">
 
-  <ion-card>
-    <img src="assets/imgs/schedule-stockholm.jpg"/>
-    <div class="card-title">Stockholm</div>
-    <div class="card-subtitle">12/22 ~ 12/24</div>
+  <ion-card *ngFor="let item of items">
+    <img src="{{item.img}}"/>
+    <div class="card-title">{{item.title}}</div>
+    <div class="card-subtitle">{{item.subTitle}}</div>
   </ion-card>
 
 </ion-content>
