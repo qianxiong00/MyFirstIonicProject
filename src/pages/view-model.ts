@@ -13,6 +13,10 @@ export namespace ViewModel {
    * アプリケーション初期状態
    */
   const InitialState:ViewModel = {
-    schedule: ScheduleInitialState
+    schedule: ScheduleInitialState()
   }
+}
+
+export function myFunc(model:ViewModel):ViewModel { 
+  return model;
 }

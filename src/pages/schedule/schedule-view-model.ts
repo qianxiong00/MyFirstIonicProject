@@ -2,7 +2,8 @@ export class ScheduleViewModel {
      items: Array<{title:string, subTitle:string, img:string}>
 }
 
-export const ScheduleInitialState:ScheduleViewModel = {
+export function ScheduleInitialState():ScheduleViewModel {
+  return {
         items: [
             {
               title: "Stockholm",
@@ -45,4 +46,5 @@ export const ScheduleInitialState:ScheduleViewModel = {
               img: "assets/imgs/schedule-copenhagen.jpg"
             }
         ]
+      }
 }
