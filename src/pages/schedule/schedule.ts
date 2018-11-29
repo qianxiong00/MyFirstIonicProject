@@ -1,61 +1,33 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ScheduleDetailsPage } from '../schedule-details/schedule-details';
+import { BasePage } from '../base-page';
+import { Store } from '@ngrx/store'
+import { ViewModel } from '../view-model';
+import { Subject } from 'rxjs'
 
 @Component({
   selector: 'page-schedule',
   templateUrl: 'schedule.html'
 })
-export class SchedulePage {
-  items: Array<{title:string, subTitle:string, img:string}> = [
-    {
-      title: "Stockholm",
-      subTitle: "12/22 ~ 12/24",
-      img: "assets/imgs/schedule-stockholm.jpg"
-    },
-    {
-      title: "Turku",
-      subTitle: "12/25",
-      img: "assets/imgs/schedule-turku.jpg"
-    },
-    {
-      title: "Helsinki",
-      subTitle: "12/26",
-      img: "assets/imgs/schedule-helsinki.jpg"
-    },
-    {
-      title: "Tromso",
-      subTitle: "12/27 ~ 12/30",
-      img: "assets/imgs/schedule-tromso.jpg"
-    },
-    {
-      title: "Bergen",
-      subTitle: "12/31",
-      img: "assets/imgs/schedule-bergen.jpg"
-    },
-    {
-      title: "Flam",
-      subTitle: "01/01",
-      img: "assets/imgs/schedule-flam.jpg"
-    },
-    {
-      title: "Oslo",
-      subTitle: "01/02",
-      img: "assets/imgs/schedule-oslo.jpg"
-    },
-    {
-      title: "Copenhagen",
-      subTitle: "01/02 ~ 01/06",
-      img: "assets/imgs/schedule-copenhagen.jpg"
-    }
-  ]
+export class SchedulePage extends BasePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    public store: Store<{viewModel:ViewModel}>) {
+    super(store)
   }
 
   itemSelected(item: any) {
     this.navCtrl.push(ScheduleDetailsPage, {
       item: item
     })
+  }
+
+  ionViewWillEnter() {
+    this.unload$ = new Subject<void>()
+    this.store.select('viewModel')
+              .takeUntil(this.unload$)
+              .subscribe(v => this.viewModel = v)
   }
 }
