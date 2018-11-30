@@ -8,13 +8,17 @@ import { ScheduleDetailsPage } from '../pages/schedule-details/schedule-details'
 import { ScheduleInitialState } from '../pages/schedule/schedule-view-model';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ViewModel, myFunc } from '../pages/view-model';
+import { myFunc } from '../pages/view-model';
+import { CostPage } from '../pages/cost/cost';
+import { CostInitialState } from '../pages/cost/cost-view-model';
+import { ScheduleDetailsInitialState } from '../pages/schedule-details/schedule-details-view-model';
 
 @NgModule({
   declarations: [
     MyApp,
     SchedulePage,
-    ScheduleDetailsPage
+    ScheduleDetailsPage,
+    CostPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import { ViewModel, myFunc } from '../pages/view-model';
       { viewModel: myFunc},
       { initialState: {
           viewModel: {
-            schedule: ScheduleInitialState()
+            schedule: ScheduleInitialState(),
+            schedule_details: ScheduleDetailsInitialState(),
+            cost: CostInitialState()
           }
         }
       }
@@ -33,7 +39,8 @@ import { ViewModel, myFunc } from '../pages/view-model';
   entryComponents: [
     MyApp,
     SchedulePage,
-    ScheduleDetailsPage
+    ScheduleDetailsPage,
+    CostPage
   ],
   providers: [
     StatusBar,

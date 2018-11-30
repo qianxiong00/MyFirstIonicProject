@@ -8,5 +8,7 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-tabs>
+    <ion-tab *ngFor="let tab of viewModel?.schedule_details?.tab_list" (ionSelect)="tabClick()" tabTitle="tab.title"></ion-tab>
+  </ion-tabs>
 </ion-content>

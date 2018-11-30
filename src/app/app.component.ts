@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { SchedulePage } from '../pages/schedule/schedule';
+import { CostPage } from '../pages/cost/cost';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,7 +25,8 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Schedule', component: SchedulePage }
+      { title: 'Schedule', component: SchedulePage },
+      { title: 'Cost', component: CostPage }
     ];
   }
 
@@ -38,9 +40,10 @@ export class MyApp {
   }
 
   openPage(page) {
+    // navigate to the new page if it is not the current page
+    this.nav.popAll();
+    this.nav.push(page.component);
     // close the menu when clicking a link from the menu
     this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.push(page.component);
   }
 }

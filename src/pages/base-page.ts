@@ -29,4 +29,11 @@ export abstract class BasePage implements OnDestroy {
     this.unload$.next()
     this.unload$.complete()
   }
+
+  ionViewWillEnter() {
+    this.unload$ = new Subject<void>()
+    this.store.select('viewModel')
+              .takeUntil(this.unload$)
+              .subscribe(v => this.viewModel = v)
+  }
 }

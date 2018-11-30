@@ -4,7 +4,6 @@ import { ScheduleDetailsPage } from '../schedule-details/schedule-details';
 import { BasePage } from '../base-page';
 import { Store } from '@ngrx/store'
 import { ViewModel } from '../view-model';
-import { Subject } from 'rxjs'
 
 @Component({
   selector: 'page-schedule',
@@ -22,12 +21,5 @@ export class SchedulePage extends BasePage {
     this.navCtrl.push(ScheduleDetailsPage, {
       item: item
     })
-  }
-
-  ionViewWillEnter() {
-    this.unload$ = new Subject<void>()
-    this.store.select('viewModel')
-              .takeUntil(this.unload$)
-              .subscribe(v => this.viewModel = v)
   }
 }
