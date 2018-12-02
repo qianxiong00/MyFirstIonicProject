@@ -17,9 +17,11 @@ export class SchedulePage extends BasePage {
     super(store)
   }
 
-  itemSelected(item: any) {
+  itemSelected(item: {id:string, title:string, subTitle:string, img:string, color:string}) {
+
     this.navCtrl.push(ScheduleDetailsPage, {
-      item: item
+      item: item,
+      tabList: this.viewModel.scheduleDetails.tab_list.filter(tab => tab.city_code === item.id)
     })
   }
 }

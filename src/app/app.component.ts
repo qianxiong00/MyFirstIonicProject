@@ -41,8 +41,7 @@ export class MyApp {
 
   openPage(page) {
     // navigate to the new page if it is not the current page
-    this.nav.popAll();
-    this.nav.push(page.component);
+    this.rootPage = page.component
     // close the menu when clicking a link from the menu
     this.menu.close();
   }

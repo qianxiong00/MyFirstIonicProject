@@ -12,13 +12,17 @@ import { myFunc } from '../pages/view-model';
 import { CostPage } from '../pages/cost/cost';
 import { CostInitialState } from '../pages/cost/cost-view-model';
 import { ScheduleDetailsInitialState } from '../pages/schedule-details/schedule-details-view-model';
+import { MapPage } from '../pages/map/map';
+import { MapRoutePage } from '../pages/map-route/map-route';
 
 @NgModule({
   declarations: [
     MyApp,
     SchedulePage,
     ScheduleDetailsPage,
-    CostPage
+    CostPage,
+    MapPage,
+    MapRoutePage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ import { ScheduleDetailsInitialState } from '../pages/schedule-details/schedule-
       { initialState: {
           viewModel: {
             schedule: ScheduleInitialState(),
-            schedule_details: ScheduleDetailsInitialState(),
+            scheduleDetails: ScheduleDetailsInitialState(),
             cost: CostInitialState()
           }
         }
@@ -40,7 +44,9 @@ import { ScheduleDetailsInitialState } from '../pages/schedule-details/schedule-
     MyApp,
     SchedulePage,
     ScheduleDetailsPage,
-    CostPage
+    CostPage,
+    MapPage,
+    MapRoutePage
   ],
   providers: [
     StatusBar,

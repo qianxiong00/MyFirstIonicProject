@@ -1,2 +1,50 @@
 page-schedule-details {
+    ion-segment-button {
+        height: 55px !important;
+        border-color: lightgray !important;
+        border-left-width: 0 !important;
+        border-top-width: 0 !important;
+        padding-top: 20px !important;
+        font-size: 2rem !important;
+        color: black !important;
+    }
+
+    ion-segment-button.segment-activated {
+        border-bottom-width: 2px !important;
+        border-bottom-color: #00c67a !important;
+        background-color: rgba(219, 248, 228, 0.3) !important;
+    }
+
+    ion-segment {
+        margin-top: -3px !important;
+        margin-bottom: -2px !important;
+    }
+
+    ion-item > div {
+        border-bottom: none !important;
+        font-size: 1em !important;
+    }
+
+    ion-icon.icon {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+
+    div.segment-div {
+        border-bottom-style: groove !important;
+    }
+
+    ion-item.item-between {
+        margin-left: 42px !important;
+        border-left-color: lightgray !important;
+        border-left-width: 1px !important;
+        border-left-style: double !important;
+        padding-right: 42px !important;
+    }
+
+    button.button-next {
+        margin: 0px !important;
+        height: 25px !important;
+        width: 25px !important;
+    }
 }

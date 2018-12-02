@@ -4,7 +4,7 @@ import { ScheduleDetailsViewModel, ScheduleDetailsInitialState } from './schedul
 
 export class ViewModel {
   schedule: ScheduleViewModel
-  schedule_details: ScheduleDetailsViewModel
+  scheduleDetails: ScheduleDetailsViewModel
   cost: CostViewModel
 }
 
@@ -18,7 +18,7 @@ export namespace ViewModel {
    */
   const InitialState:ViewModel = {
     schedule: ScheduleInitialState(),
-    schedule_details: ScheduleDetailsInitialState(),
+    scheduleDetails: ScheduleDetailsInitialState(),
     cost: CostInitialState()
   }
 }
