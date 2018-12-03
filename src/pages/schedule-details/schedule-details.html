@@ -31,10 +31,10 @@
           <h2>{{detail.content}}</h2>
           <p>{{detail.date_time}}</p>
         </ion-item>
-        <ion-item *ngIf="!!detail.trafic" class="item-between">
+        <ion-item *ngIf="!!detail.trafic" class="item-between" (click)="clickRouteIcon(detail, tab.detail_list[i+1])">
           <ion-icon name="{{detail.trafic}}" class="icon" item-start></ion-icon>
           {{detail.time}}
-          <button ion-fab color="dark" class="button-next" (click)="clickRouteIcon(detail, tab.detail_list[i+1])" item-end>
+          <button ion-fab color="dark" class="button-next" item-end>
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
         </ion-item>

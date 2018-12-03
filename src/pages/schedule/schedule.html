@@ -10,12 +10,15 @@
 
 <ion-content class="card-background-page">
 
-  <ion-card
+  <button
     *ngFor="let item of viewModel?.schedule?.items; let i = index"
     (click)="itemSelected(item)"
-    [style.text-align]="i%2 === 1 ? 'right' : null">
+    [style.text-align]="i%2 === 1 ? 'right' : 'left'"
+    [style.border-left]="i%2 === 0 ? '4px '+item.color+' solid' : null"
+    [style.border-right]="i%2 === 1 ? '4px '+item.color+' solid' : null"
+    [style.background-color]="item.background">
     <div class="card-title">{{item.title}}</div>
     <div class="card-subtitle">{{item.subTitle}}</div>
-  </ion-card>
+  </button>
 
 </ion-content>

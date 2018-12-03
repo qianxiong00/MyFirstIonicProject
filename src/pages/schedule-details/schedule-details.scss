@@ -47,4 +47,8 @@ page-schedule-details {
         height: 25px !important;
         width: 25px !important;
     }
+
+    ion-item.item-between:active {
+        background-color: rgba(219, 248, 228, 0.534) !important;
+    }
 }
