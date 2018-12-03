@@ -1,18 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BasePage } from '../base-page';
 import { NavParams, Platform, LoadingController } from 'ionic-angular';
-import { Store } from '@ngrx/store'
-import { ViewModel } from '../view-model';
 import {
     GoogleMaps,
     GoogleMap,
-    GoogleMapsEvent,
-    GoogleMapOptions,
-    CameraPosition,
-    MarkerOptions,
-    Marker,
-    Environment,
-    MyLocation,
     GoogleMapsAnimation,
   } from '@ionic-native/google-maps';
 
@@ -32,11 +23,10 @@ export class MapRoutePage extends BasePage {
 
     constructor(
       public navParams: NavParams,
-      public store: Store<{viewModel:ViewModel}>,
       private platform: Platform,
       public loadingCtrl: LoadingController
     ) {
-        super(store)
+        super()
         // If we navigated to this page, we will have an item available as a nav param
         this.from = navParams.get('from');
         this.to = navParams.get('to');

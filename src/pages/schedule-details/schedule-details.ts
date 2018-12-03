@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePage } from '../base-page';
 import { NavParams, NavController } from 'ionic-angular';
-import { Store } from '@ngrx/store'
-import { ViewModel } from '../view-model';
 import { MapPage } from '../map/map';
 import { MapRoutePage } from '../map-route/map-route';
 
@@ -17,10 +15,9 @@ export class ScheduleDetailsPage extends BasePage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    public store: Store<{viewModel:ViewModel}>
+    public navParams: NavParams
   ) {
-    super(store)
+    super()
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedTabId = '01';
     this.selectedItem = navParams.get('item');

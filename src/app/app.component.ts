@@ -4,6 +4,7 @@ import { SchedulePage } from '../pages/schedule/schedule';
 import { CostPage } from '../pages/cost/cost';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CurrencyPage } from '../pages/currency/currency';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +13,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make SchedulePage the root (or first) page
-  rootPage = SchedulePage;
+  rootPage = CostPage;//SchedulePage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -26,7 +27,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Schedule', component: SchedulePage },
-      { title: 'Cost', component: CostPage }
+      { title: 'Cost', component: CostPage },
+      { title: 'Currency', component: CurrencyPage}
     ];
   }
 
