@@ -14,4 +14,13 @@
         <input type="text" [(ngModel)]="currency.amount" (change)="changeAmount(currency)" item-end>
         <button *ngIf="currency.cd !== baseCurrency" (click)="setToBase(currency)" item-end>Base</button>
     </ion-item>
+    <ion-item>
+        <button (click)="selectANumber()">Add</button>
+    </ion-item>
+    <ion-item>
+        <ion-label>Add Currency</ion-label>
+        <ion-select [(ngModel)]="addCurrencies" multiple="true">
+            <ion-option *ngFor="let c of currencies" value="c.cd">{{c.cd}} - {{c.name}}</ion-option>
+        </ion-select>
+    </ion-item>
 </ion-content>

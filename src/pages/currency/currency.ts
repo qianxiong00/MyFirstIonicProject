@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BasePage } from '../base-page';
 import { Storage } from '@ionic/storage';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 
 @Component({
   selector: 'page-currency',
@@ -13,10 +14,12 @@ export class CurrencyPage extends BasePage {
     currencies: Array<{cd:string, name:string}>;
     baseCurrency: any;
     selectedCurrencies: any;
+    addCurrencies: any;
 
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private selector: WheelSelector) {
         super()
         this.initDisplayData();
+        this.getCurrencies();
     }
 
     initDisplayData() {
@@ -49,6 +52,7 @@ export class CurrencyPage extends BasePage {
     }
 
     getCurrencies() {
+        this.currencies = [];
         fetch(this.listUrl, {}).then(response => {
             response.json().then(json => {
                 if (!!json.currencies && typeof json.currencies === 'object') {
@@ -95,5 +99,24 @@ export class CurrencyPage extends BasePage {
         currency.amount = 100;
         this.changeAmount(currency);
     }
+
+    selectANumber() {
+        const jsonData = {
+            numbers: [
+             { description: "1" },
+              { description: "2" },
+              { description: "3" }
+            ]};
+
+        this.selector.show({
+          title: "How Many?",
+          items: [jsonData.numbers],
+        }).then(
+          result => {
+            console.log(result[0].description + ' at index: ' + result[0].index);
+          },
+          err => console.log('Error: ', err)
+          );
+      }
 
 }

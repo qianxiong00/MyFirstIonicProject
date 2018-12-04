@@ -11,6 +11,7 @@ import { MapPage } from '../pages/map/map';
 import { MapRoutePage } from '../pages/map-route/map-route';
 import { IonicStorageModule } from '@ionic/storage';
 import { CurrencyPage } from '../pages/currency/currency';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CurrencyPage } from '../pages/currency/currency';
   providers: [
     StatusBar,
     SplashScreen,
+    WheelSelector,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
