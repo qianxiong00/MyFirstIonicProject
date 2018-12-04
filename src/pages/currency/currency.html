@@ -8,5 +8,10 @@
 </ion-header>
     
 <ion-content>
-    <p>{{rate}}</p>
+    <ion-item *ngFor="let currency of selectedCurrencies">
+        <h2>{{currency.cd}}</h2>
+        <p>{{currency.rate}}</p>
+        <input type="text" [(ngModel)]="currency.amount" (change)="changeAmount(currency)" item-end>
+        <button *ngIf="currency.cd !== baseCurrency" (click)="setToBase(currency)" item-end>Base</button>
+    </ion-item>
 </ion-content>
