@@ -25,7 +25,10 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {preloadModules: true}),
+    IonicModule.forRoot(MyApp, {
+      preloadModules: true,
+      swipeBackEnabled:true
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

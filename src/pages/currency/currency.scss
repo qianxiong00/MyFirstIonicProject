@@ -1,3 +1,28 @@
 page-currency {
-    
+    button.button-eye {
+        margin: 0px !important;
+        height: 25px !important;
+        width: 25px !important;
+    }
+
+    h2 {
+        color: #757373 !important;
+        font-size: 1em !important;
+    }
+
+    input {
+        border: none !important;
+        font-size: 1.6em !important;
+        font-weight: bold !important;
+        background-color: transparent !important;
+    }
+
+    ion-label {
+        margin: 4px 8px 4px 0 !important;
+    }
+
+    img {
+        width: 48px !important;
+        height: 48px !important;
+    }
 }

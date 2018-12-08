@@ -3,17 +3,29 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Currency</ion-title>
+        <ion-title>Currency - Converter</ion-title>
     </ion-navbar>
 </ion-header>
     
 <ion-content>
-    <ion-item *ngFor="let currency of selectedCurrencies">
-        <h2>{{currency.cd}}</h2>
-        <p>{{currency.rate}}</p>
-        <input type="text" [(ngModel)]="currency.amount" (change)="changeAmount(currency)" item-end>
-        <button *ngIf="currency.cd !== baseCurrency" (click)="setToBase(currency)" item-end>Base</button>
-    </ion-item>
+    <ion-card *ngFor="let currency of selectedCurrencies">
+        <ion-item [style.background-color]="editCurrency === currency.cd ? '#fbfbfb' : '#ebf5fd'">
+            <ion-thumbnail item-start>
+                <img src="{{flagImgSrc(currency.cd)}}">
+            </ion-thumbnail>
+            <h2>{{currency.cd}} {{currency.name}}</h2>
+            <input type="number" 
+                [(ngModel)]="currency.amount"
+                (change)="changeAmount(currency)"
+                (focus)="focusAmount(currency.cd)">
+            <button ion-fab item-end
+                *ngIf="currency.cd !== baseCurrency"
+                class="button-eye"
+                (click)="setToBase(currency)">
+                <ion-icon name="eye"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-card>
     <ion-item>
         <button (click)="selectANumber()">Add</button>
     </ion-item>

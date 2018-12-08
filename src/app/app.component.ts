@@ -13,7 +13,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make SchedulePage the root (or first) page
-  rootPage = CurrencyPage;//SchedulePage;
+  rootPage = SchedulePage;
   pages: Array<{title: string, component: any}>;
 
   constructor(

@@ -14,7 +14,15 @@ export class CurrencyPage extends BasePage {
     currencies: Array<{cd:string, name:string}>;
     baseCurrency: any;
     selectedCurrencies: any;
+    editCurrency: any;
     addCurrencies: any;
+    countryFlags: any = {
+        "JPY": "JP",
+        "SEK": "SE",
+        "EUR": "EU",
+        "NOK": "NO",
+        "DKK": "DK"
+    };
 
     constructor(private storage: Storage, private selector: WheelSelector) {
         super()
@@ -26,22 +34,24 @@ export class CurrencyPage extends BasePage {
         this.storage.ready().then(localforage => {
             localforage.getItem('selectedCurrencies', (err, value) => {
                 if (!err && value !== null) {
-                    this.selectedCurrencies = Object.keys(value).map(i => {return {cd:value[i]};});
+                    this.selectedCurrencies = Object.keys(value).map(i => {return {cd:value[i].cd,name:value[i].name};});
                 } else {
                     this.selectedCurrencies = [
-                        {cd:"JPY"},
-                        {cd:"SEK"},
-                        {cd:"EUR"},
-                        {cd:"NOK"},
-                        {cd:"DKK"}
+                        {cd:"JPY",name:"Japanese Yen"},
+                        {cd:"SEK",name:"Swedish Krona"},
+                        {cd:"EUR",name:"Euro"},
+                        {cd:"NOK",name:"Norwegian Krone"},
+                        {cd:"DKK",name:"Norwegian Krone"}
                     ];
-                    localforage.setItem('selectedCurrencies', ["JPY","SEK","EUR","NOK","DKK"]);
+                    localforage.setItem('selectedCurrencies', this.selectedCurrencies);
                 }
                 localforage.getItem('baseCurrency', (err, value) => {
                     if (!err && value !== null) {
                         this.baseCurrency = value;
+                        this.editCurrency = value;
                     } else {
                         this.baseCurrency = "JPY";
+                        this.editCurrency = "JPY";
                         localforage.setItem('baseCurrency', this.baseCurrency);
                     }
                     const currencyCdList = this.selectedCurrencies.map(c => c.cd);
@@ -92,6 +102,7 @@ export class CurrencyPage extends BasePage {
 
     setToBase(currency: any) {
         this.baseCurrency = currency.cd;
+        this.editCurrency = currency.cd;
         this.storage.ready().then(localforage => {
             localforage.setItem('baseCurrency', this.baseCurrency);
         });
@@ -118,5 +129,13 @@ export class CurrencyPage extends BasePage {
           err => console.log('Error: ', err)
           );
       }
+
+    focusAmount(cd: any) {
+        this.editCurrency = cd;
+    }
+
+    flagImgSrc(cd: any): string {
+        return 'https://countryflags.io/' + this.countryFlags[cd] + '/flat/48.png';
+    }
 
 }

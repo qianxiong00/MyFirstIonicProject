@@ -71,7 +71,7 @@ export function ScheduleInitialState():ScheduleViewModel {
             {
               id: "08",
               title: "Copenhagen",
-              subTitle: "01/02 ~ 01/06",
+              subTitle: "01/03 ~ 01/06",
               img: "assets/imgs/schedule-copenhagen1.png",
               color:"#f9ba09",
               background:"rgba(249, 186, 9, 0.04)"
