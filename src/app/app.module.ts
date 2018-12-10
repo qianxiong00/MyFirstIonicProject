@@ -12,6 +12,9 @@ import { MapRoutePage } from '../pages/map-route/map-route';
 import { IonicStorageModule } from '@ionic/storage';
 import { CurrencyPage } from '../pages/currency/currency';
 import { SelectSearchableModule } from 'ionic-select-searchable';
+import { PdfViewerPage } from '../pages/pdf-viewer/pdf-viewer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     CostPage,
     MapPage,
     MapRoutePage,
-    CurrencyPage
+    CurrencyPage,
+    PdfViewerPage
   ],
   imports: [
     BrowserModule,
@@ -40,11 +44,14 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     CostPage,
     MapPage,
     MapRoutePage,
-    CurrencyPage
+    CurrencyPage,
+    PdfViewerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DocumentViewer,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
