@@ -8,13 +8,5 @@
 </ion-header>
 
 <ion-content>
-    <ion-item *ngIf="!!costList && costList.length > 0">
-        <h5 *ngFor="let cost of costList">{{cost.content}}</h5>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Content</ion-label>
-        <ion-input type="text" [(ngModel)]="inputCost"></ion-input>
-    </ion-item>
-    <button (click)="addClicked()">Add</button>
 
 </ion-content>
