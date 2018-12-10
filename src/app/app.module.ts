@@ -11,7 +11,7 @@ import { MapPage } from '../pages/map/map';
 import { MapRoutePage } from '../pages/map-route/map-route';
 import { IonicStorageModule } from '@ionic/storage';
 import { CurrencyPage } from '../pages/currency/currency';
-import { WheelSelector } from '@ionic-native/wheel-selector';
+import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
       preloadModules: true,
       swipeBackEnabled:true
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    SelectSearchableModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +45,6 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
   providers: [
     StatusBar,
     SplashScreen,
-    WheelSelector,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

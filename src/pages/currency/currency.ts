@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { BasePage } from '../base-page';
 import { Storage } from '@ionic/storage';
-import { WheelSelector } from '@ionic-native/wheel-selector';
+// import { WheelSelector, WheelSelectorItem } from '@ionic-native/wheel-selector';
+import { ToastController } from 'ionic-angular';
+import { SelectSearchableComponent } from 'ionic-select-searchable';
 
 @Component({
   selector: 'page-currency',
@@ -11,11 +13,11 @@ export class CurrencyPage extends BasePage {
 
     listUrl: string = 'http://apilayer.net/api/list?access_key=474f4d10973920709171820714ce1bd4';
     rateUrl: string = 'http://apilayer.net/api/live?access_key=474f4d10973920709171820714ce1bd4&format=1'
-    currencies: Array<{cd:string, name:string}>;
+    currencies: {cd:string, name:string}[];
     baseCurrency: any;
-    selectedCurrencies: any;
+    selectedCurrencies: any[];
     editCurrency: any;
-    addCurrencies: any;
+    addCurrencies: any[];
     countryFlags: any = {
         "JPY": "JP",
         "SEK": "SE",
@@ -24,7 +26,9 @@ export class CurrencyPage extends BasePage {
         "DKK": "DK"
     };
 
-    constructor(private storage: Storage, private selector: WheelSelector) {
+    constructor(private storage: Storage,
+        // private selector: WheelSelector,
+        private toastCtrl: ToastController) {
         super()
         this.initDisplayData();
         this.getCurrencies();
@@ -111,31 +115,59 @@ export class CurrencyPage extends BasePage {
         this.changeAmount(currency);
     }
 
-    selectANumber() {
-        const jsonData = {
-            numbers: [
-             { description: "1" },
-              { description: "2" },
-              { description: "3" }
-            ]};
-
-        this.selector.show({
-          title: "How Many?",
-          items: [jsonData.numbers],
-        }).then(
-          result => {
-            console.log(result[0].description + ' at index: ' + result[0].index);
-          },
-          err => console.log('Error: ', err)
-          );
-      }
+    // clickAddButton() {
+    //     const currencyList = this.currencies
+    //                                 .filter(c => this.selectedCurrencies.filter(sc => sc.cd === c.cd).length === 0)
+    //                                 .map(c => {
+    //                                     // let item: WheelSelectorItem;
+    //                                     // item.description = c.name;
+    //                                     return {description: c.name};
+    //                                 });
+    //     this.selector.show({
+    //       title: "Add Currency",
+    //       items: [currencyList],
+    //     }).then(
+    //       result => {
+    //           let msg = `Selected ${result[0].description}`;
+    //           let toast = this.toastCtrl.create({
+    //               message: msg,
+    //               duration: 5000
+    //           });
+    //           toast.present();
+    //         //   let currency = this.currencies.filter(c => c.name === result[0].description)[0];
+    //         //   if (!!currency) {
+    //         //     this.selectedCurrencies.push({cd:currency.cd, name:currency.name});
+    //         //     const currencyCdList = this.selectedCurrencies.map(c => c.cd);
+    //         //     this.getRates(currencyCdList);
+    //         //     this.storage.ready().then(localforage => {
+    //         //         localforage.setItem('selectedCurrencies', this.selectedCurrencies);
+    //         //     });
+    //         //   }
+    //       },
+    //       err => console.log('Error: ', err)
+    //       );
+    //   }
 
     focusAmount(cd: any) {
         this.editCurrency = cd;
     }
 
     flagImgSrc(cd: any): string {
-        return 'https://countryflags.io/' + this.countryFlags[cd] + '/flat/48.png';
+        return 'https://countryflags.io/' + (cd + '').substr(0, 2) + '/flat/48.png';
+    }
+
+    addCurrencyTo(event: {
+        component: SelectSearchableComponent,
+        value: any
+    }) {
+        if (!event.value || event.value.length <= 0) return;
+        event.value.forEach(v => this.selectedCurrencies.push(v));
+        const currencyCdList = this.selectedCurrencies.map(c => c.cd);
+        this.getRates(currencyCdList);
+        this.storage.ready().then(localforage => {
+            localforage.setItem('selectedCurrencies', this.selectedCurrencies);
+        });
+        this.addCurrencies = [];
     }
 
 }

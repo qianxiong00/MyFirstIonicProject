@@ -5,23 +5,31 @@
     </button>
     <ion-title>{{selectedItem.title}}</ion-title>
   </ion-navbar>
-  
-  <img src="{{selectedItem.img}}">
+</ion-header>
+
+<ion-content>
+  <img src="{{selectedItem.img}}" #img>
+  <button ion-button round outline class="date-time" (click)="updateDateTime()">
+    {{dateTime.split(' ')[0]}}<br>
+    {{dateTime.split(' ')[1]}}
+  </button>
   <div class="segment-div">
-    <ion-segment [(ngModel)]="selectedTabId" [style.width]="(tabList.length / 5 * 100) + '%'">
+    <ion-segment
+      [(ngModel)]="selectedTabId"
+      [style.width]="(tabList.length / 5 * 100) + '%'">
       <ion-segment-button
-        *ngFor="let tab of tabList"
-        value="{{tab.id}}">
+        *ngFor="let tab of tabList; let i = index"
+        value="{{tab.id}}"
+        (ionSelect)="clickTab(i)">
         {{tab.title}}
       </ion-segment-button>
     </ion-segment>
   </div>
-</ion-header>
-
-<ion-content>
-  <ng-container *ngFor="let tab of tabList">
-    <ng-container *ngIf="tab.id === selectedTabId">
-      <ng-container *ngFor="let detail of tab.detail_list; let i = index">
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+  <ion-slide *ngFor="let tab of tabList">
+    <ng-container *ngIf="selectedTabId === tab.id">
+      <ng-container
+        *ngFor="let detail of tab.detail_list; let i = index">
         <ion-item>
           <ion-avatar item-start>
               <button ion-fab color="secondary" (click)="clickMapIcon(detail)">
@@ -40,5 +48,6 @@
         </ion-item>
       </ng-container>
     </ng-container>
-  </ng-container>
+  </ion-slide>
+  </ion-slides>
 </ion-content>

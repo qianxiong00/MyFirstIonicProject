@@ -32,14 +32,15 @@ page-schedule-details {
 
     div.segment-div {
         border-bottom-style: groove !important;
+        position: sticky !important;
+        top: 0px !important;
+        background-color: #fff !important;
+        z-index: 9999999999999 !important;
     }
 
     ion-item.item-between {
-        margin-left: 42px !important;
-        border-left-color: lightgray !important;
-        border-left-width: 1px !important;
-        border-left-style: double !important;
-        padding-right: 42px !important;
+        padding-left: 32px !important;
+        padding-right: 25px !important;
     }
 
     button.button-next {
@@ -52,10 +53,16 @@ page-schedule-details {
         background-color: rgba(219, 248, 228, 0.534) !important;
     }
 
-    // ion-slide {
-    //     overflow-y: auto !important;
-    //     div.slide-zoom {
-    //         padding-top: 340px !important;
-    //     }
-    // }
+    ion-slides {
+        height: unset !important;
+    }
+
+    button.date-time {
+        right: 10px !important;
+        position: absolute !important;
+        top: 5px !important;
+        height: auto !important;
+        background-color: rgba(188, 215, 249, 0.7) !important;
+        padding: 5px 10px !important;
+    }
 }

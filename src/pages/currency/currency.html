@@ -26,13 +26,25 @@
             </button>
         </ion-item>
     </ion-card>
-    <ion-item>
-        <button (click)="selectANumber()">Add</button>
-    </ion-item>
-    <ion-item>
-        <ion-label>Add Currency</ion-label>
-        <ion-select [(ngModel)]="addCurrencies" multiple="true">
-            <ion-option *ngFor="let c of currencies" value="c.cd">{{c.cd}} - {{c.name}}</ion-option>
-        </ion-select>
+    <!-- <ion-item class="add">
+        <button ion-fab color="primary" (click)="clickAddButton()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-item> -->
+    <ion-item class="add">
+        <button ion-fab color="primary">
+            <ion-icon name="add"></ion-icon>
+        </button>
+        <select-searchable
+            item-content
+            [(ngModel)]="addCurrencies"
+            [items]="currencies"
+            itemValueField="cd"
+            itemTextField="name"
+            [canSearch]="true"
+            [isMultiple]="true"
+            (onChange)="addCurrencyTo($event)"
+            okButtonText="Add">
+        </select-searchable>
     </ion-item>
 </ion-content>

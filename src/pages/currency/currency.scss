@@ -25,4 +25,21 @@ page-currency {
         width: 48px !important;
         height: 48px !important;
     }
+
+    ion-item.add {
+        width: 64px !important;
+        margin-left: calc(50% - 28px) !important;
+        padding: 0px !important;
+        div.item-inner {
+            padding-right: 0px !important;
+            border: none !important;
+            ion-label {
+                margin: 4px !important;
+            }
+        }
+    }
+
+    div.select-searchable-value, div.select-searchable-icon {
+        display: none !important;
+    }
 }

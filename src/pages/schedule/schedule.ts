@@ -14,7 +14,7 @@ export class SchedulePage extends BasePage {
     super()
   }
 
-  itemSelected(item: {id:string, title:string, subTitle:string, img:string, color:string}) {
+  itemSelected(item: any) {
 
     this.navCtrl.push(ScheduleDetailsPage, {
       item: item,
