@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BasePage } from '../base-page';
 import { Storage } from '@ionic/storage';
+import { NavController } from 'ionic-angular';
+import { CostDetailsPage } from '../cost-details/cost-details';
 
 @Component({
   selector: 'page-cost',
@@ -10,57 +12,98 @@ export class CostPage extends BasePage {
 
   costList: any[];
   categories: {[key:string]:any};
-  iconList: string[] = [
-    "add","add-circle","alarm","albums","alert","american-football","analytics","logo-android","logo-angular","aperture",
-    "logo-apple","apps","appstore","archive","arrow-back","arrow-down","arrow-dropdown","arrow-dropdown-circle","arrow-dropleft",
-    "arrow-dropleft-circle","arrow-dropright","arrow-dropright-circle","arrow-dropup","arrow-dropup-circle","arrow-forward",
-    "arrow-round-back","arrow-round-down","arrow-round-forward","arrow-round-up","arrow-up","at","attach","backspace",
-    "barcode","baseball","basket","basketball","battery-charging","battery-dead","battery-full","beaker","beer","bicycle",
-    "logo-bitcoin","bluetooth","boat","body","bonfire","book","bookmark","bookmarks","bowtie","briefcase","browsers","brush",
-    "logo-buffer","bug","build","bulb","bus","cafe","calculator","calendar","call","camera","car","card","cart","cash",
-    "chatboxes","chatbubbles","checkbox","checkbox-outline","checkmark","checkmark-circle","checkmark-circle-outline",
-    "logo-chrome","clipboard","clock","close","close-circle","closed-captioning","cloud","cloud-circle","cloud-done",
-    "cloud-download","cloud-outline","cloud-upload","cloudy","cloudy-night","code","code-download","code-working",
-    "logo-codepen","cog","color-fill","color-filter","color-palette","color-wand","compass","construct","contact","contacts",
-    "contract","contrast","copy","create","crop","logo-css3","cube","cut","logo-designernews","desktop","disc","document",
-    "done-all","download","logo-dribbble","logo-dropbox","easel","egg","logo-euro","exit","expand","eye","eye-off",
-    "logo-facebook","fastforward","female","filing","film","finger-print","flag","flame","flash","flask","flower","folder",
-    "folder-open","football","logo-foursquare","logo-freebsd-devil","funnel","game-controller-a","game-controller-b",
-    "git-branch","git-commit","git-compare","git-merge","git-network","git-pull-request","logo-github","glasses","globe",
-    "logo-google","logo-googleplus","grid","logo-hackernews","hammer","hand","happy","headset","heart","heart-outline",
-    "help","help-buoy","help-circle","home","logo-html5","ice-cream","image","images","infinite","information",
-    "information-circle","logo-instagram","ionic","ionitron","logo-javascript","jet","key","keypad","laptop","leaf",
-    "link","logo-linkedin","list","list-box","locate","lock","log-in","log-out","magnet","mail","mail-open","male",
-    "man","map","logo-markdown","medal","medical","medkit","megaphone","menu","mic","mic-off","microphone","moon",
-    "more","move","musical-note","musical-notes","navigate","no-smoking","logo-nodejs","notifications","notifications-off",
-    "notifications-outline","nuclear","nutrition","logo-octocat","open","options","outlet","paper","paper-plane",
-    "partly-sunny","pause","paw","people","person","person-add","phone-landscape","phone-portrait","photos","pie","pin",
-    "pint","logo-pinterest","pizza","plane","planet","play","logo-playstation","podium","power","pricetag","pricetags",
-    "print","pulse","logo-python","qr-scanner","quote","radio","radio-button-off","radio-button-on","rainy","recording",
-    "logo-reddit","redo","refresh","refresh-circle","remove","remove-circle","reorder","repeat","resize","restaurant",
-    "return-left","return-right","reverse-camera","rewind","ribbon","rose","logo-rss","sad","logo-sass","school","search",
-    "send","settings","share","share-alt","shirt","shuffle","skip-backward","skip-forward","logo-skype","logo-snapchat",
-    "snow","speedometer","square","square-outline","star","star-half","star-outline","stats","logo-steam","stopwatch",
-    "subway","sunny","swap","switch","sync","tablet-landscape","tablet-portrait","tennisball","text","thermometer",
-    "thumbs-down","thumbs-up","thunderstorm","time","timer","train","transgender","trash","trending-down","trending-up",
-    "trophy","logo-tumblr","tux","logo-twitch","logo-twitter","umbrella","undo","unlock","logo-usd","videocam","logo-vimeo",
-    "volume-down","volume-mute","volume-off","volume-up","walk","warning","watch","water","logo-whatsapp","wifi",
-    "logo-windows","wine","woman","logo-wordpress","logo-xbox","logo-yahoo","logo-yen","logo-youtube"
-  ]
 
-  constructor(private storage: Storage) {
+  constructor(public navCtrl: NavController,
+    private storage: Storage) {
     super()
     this.storage.ready().then(localforage => {
       localforage.getItem('costList', (err, value) => {
         if (!err && value !== null) {
-          this.costList = Array.of(value)
+          this.costList = Object.keys(value).map(i => value[i]);
         } else {
           this.costList = [{
             category: "hotel",
-            total: 10000,
             items:[{
-              name:"hotel 1",
-              cost: 10000
+              name:"12/22-12/23 斯德哥尔摩（瑞典）",
+              cost: 9023
+            },{
+              name:"12/25 赫尔辛基（芬兰）",
+              cost: 5294
+            },{
+              name:"12/26 奥斯陆（挪威）",
+              cost: 4788
+            },{
+              name:"12/27-12/29 特罗姆瑟（挪威）",
+              cost: 20725
+            },{
+              name:"12/30-12/31 卑尔根（挪威）",
+              cost: 7338
+            },{
+              name:"01/01 奥斯陆（挪威）",
+              cost: 5655
+            },{
+              name:"01/02-01/05 哥本哈根（丹麦）",
+              cost: 25293
+            }]
+          },{
+            category: "trafic",
+            items:[{
+              name:"东京->斯德哥尔摩->奥斯陆->哥本哈根 哥本哈根->东京",
+              cost: 91870
+            },{
+              name:"斯德哥尔摩->图尔库",
+              cost: 18083
+            },{
+              name:"赫尔辛基->奥斯陆->巴尔杜夫（特罗姆瑟）",
+              cost: 14997
+            },{
+              name:"特罗姆瑟->卑尔根",
+              cost: 13096
+            },{
+              name:"VR Train 图尔库->赫尔辛基",
+              cost: 1168
+            },{
+              name:"NSB Train Bergen->Voss",
+              cost: 2982
+            },{
+              name:"Nettbus Voss->Gudvangen",
+              cost: 2100
+            },{
+              name:"Fjord Cruise Gudvangen->Flam",
+              cost: 6160
+            },{
+              name:"NSB Train Flam->Myrdal->Oslo",
+              cost: 12764
+            }]
+          },{
+            category: "ticket",
+            items: []
+          },{
+            category: "meal",
+            items: []
+          },{
+            category: "shopping",
+            items: []
+          },{
+            category: "present",
+            items: []
+          },{
+            category: "other",
+            items: [{
+              name: "旅行保险",
+              cost: 2730
+            },{
+              name: "SIM卡",
+              cost: 4100
+            },{
+              name: "签证",
+              cost: 7799
+            },{
+              name: "国际驾照",
+              cost: 2350
+            },{
+              name:"租车",
+              cost: 5958
             }]
           }];
           localforage.setItem('costList', this.costList);
@@ -72,8 +115,13 @@ export class CostPage extends BasePage {
           this.categories = value;
         } else {
           this.categories = {
-            "hotel": {icon:""},
-            "trafic": {icon:""}
+            "hotel": {icon:"home", name:"住宿", total: 78116},
+            "trafic": {icon:"plane", name: "交通", total: 163220},
+            "ticket": {icon:"document", name:"门票", total:0},
+            "meal": {icon:"restaurant", name:"吃饭", total: 0},
+            "shopping": {icon:"cart", name:"购物", total: 0},
+            "present": {icon:"bowtie", name:"礼物", total: 0},
+            "other": {icon:"flower", name:"其他", total: 22937}
           };
           localforage.setItem('categories', this.categories);
         }
@@ -135,6 +183,46 @@ export class CostPage extends BasePage {
     this.storage.ready().then(localforage => {
       localforage.setItem('categories', this.categories);
     });
+  }
+
+  get categoryList():any[] {
+    const formatter = Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'JPY',
+      minimumFractionDigits: 0
+    })
+
+    if (!this.categories) return [];
+    return Object.keys(this.categories).map(key => {return {...this.categories[key], id:key, totalString: formatter.format(this.categories[key].total)};});
+  }
+
+  get totalCost():string {
+    const formatter = Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'JPY',
+      minimumFractionDigits: 0
+    });
+    
+    let total: number = 0;
+    if (!this.categories) return formatter.format(total);
+
+    this.categoryList.forEach(ctgry => {
+      total += ctgry.total;
+    });
+
+    return formatter.format(total);
+  }
+
+  itemSelected(category: any) {
+    let item = this.costList.filter(cost => cost.category === category.id)[0];
+    if (!item) return;
+
+    this.navCtrl.push(CostDetailsPage, {
+      categoryId: category.id,
+      item: item,
+      costList: this.costList,
+      categories: this.categories
+    })
   }
 
 }

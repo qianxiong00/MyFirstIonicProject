@@ -1,12 +1,23 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+            <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Cost</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-card class="cards-list-demo">
+        <ion-card-header>
+            合计：{{totalCost}}/人
+        </ion-card-header>
+        <ion-list>
+            <button ion-item *ngFor="let category of categoryList" (click)="itemSelected(category)">
+                <ion-icon name="{{category.icon}}" item-start></ion-icon>
+                {{category.name}}
+                <span item-end>{{category.totalString}}/人</span>
+            </button>
+        </ion-list>
+    </ion-card>
 </ion-content>

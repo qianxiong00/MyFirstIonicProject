@@ -12,9 +12,11 @@ import { MapRoutePage } from '../pages/map-route/map-route';
 import { IonicStorageModule } from '@ionic/storage';
 import { CurrencyPage } from '../pages/currency/currency';
 import { SelectSearchableModule } from 'ionic-select-searchable';
-import { PdfViewerPage } from '../pages/pdf-viewer/pdf-viewer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { File } from '@ionic-native/file';
+import { CostDetailsPage } from '../pages/cost-details/cost-details';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { CostDetailsAddPage } from '../pages/cost-details/cost-details-add';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,13 @@ import { File } from '@ionic-native/file';
     MapPage,
     MapRoutePage,
     CurrencyPage,
-    PdfViewerPage
+    CostDetailsPage,
+    CostDetailsAddPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-      preloadModules: true,
-      swipeBackEnabled:true
+      preloadModules: true
     }),
     IonicStorageModule.forRoot(),
     SelectSearchableModule
@@ -45,12 +47,14 @@ import { File } from '@ionic-native/file';
     MapPage,
     MapRoutePage,
     CurrencyPage,
-    PdfViewerPage
+    CostDetailsPage,
+    CostDetailsAddPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     DocumentViewer,
+    ScreenOrientation,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
