@@ -23,11 +23,7 @@ export class MapRoutePage extends BasePage {
 
     constructor(
       public navParams: NavParams,
-      private platform: Platform,
-      public loadingCtrl: LoadingController
-    ) {
-        super()
-        // If we navigated to this page, we will have an item available as a nav param
+      private platform:e will have an item available as a nav param
         this.from = navParams.get('from');
         this.to = navParams.get('to');
     }
